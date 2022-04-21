@@ -1,0 +1,13 @@
+repositories: 
+   raspicat:
+    type: git
+    url: git@github.com:CIT-Autonomous-Robot-Lab/raspicat.git
+    version: master
+   obstacle_detector:
+    type: git
+    url: git@github.com:tysik/obstacle_detector.git
+    version: master
+   emcl2:
+    type: git
+    url: git@github.com:ryuichiueda/emcl2.git
+    version: master
