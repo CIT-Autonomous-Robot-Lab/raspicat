@@ -37,3 +37,6 @@
 [submodule "raspicat_sim"]
 	path = raspicat_sim
 	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_sim.git
+[submodule "raspicat_hotspot"]
+	path = raspicat_hotspot
+	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_hotspot.git
