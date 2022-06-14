@@ -4,7 +4,7 @@
   <version>0.0.0</version>
   <description>The raspicat_ros meta package</description>
 
-  <maintainer email="support@rt-net.jp">Tatsuhiro Ikebe</maintainer>
+  <maintainer email="beike315@icloud.com">Tatsuhiro Ikebe</maintainer>
 
   <license>Apache-2.0</license>
 
@@ -13,14 +13,11 @@
   <exec_depend>raspicat_description</exec_depend>
   <exec_depend>raspicat_documentation</exec_depend>
   <exec_depend>raspicat_navigation</exec_depend>
-  <exec_depend>raspicat_navigation_msgs</exec_depend>
   <exec_depend>raspicat_perception</exec_depend>
   <exec_depend>raspicat_rosbag</exec_depend>
   <exec_depend>raspicat_setup_scripts</exec_depend>
   <exec_depend>raspicat_sim</exec_depend>
   <exec_depend>raspicat_slam</exec_depend>
-  <exec_depend>raspicat_speak</exec_depend>
-  <exec_depend>raspicat_switch_control</exec_depend>
   <exec_depend>raspimouse</exec_depend>
 
   <export>

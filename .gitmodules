@@ -7,21 +7,15 @@
 [submodule "raspicat_description"]
 	path = raspicat_description
 	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_description.git
-[submodule "raspicat_navigation_msgs"]
-	path = raspicat_navigation_msgs
-	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_navigation_msgs.git
 [submodule "raspicat_documentation"]
 	path = raspicat_documentation
 	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_documentation.git
 [submodule "raspicat_speak"]
-	path = raspicat_speak
-	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_speak.git
+       path = raspicat_speak
+       url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_speak.git
 [submodule "raspicat_perception"]
 	path = raspicat_perception
 	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_perception.git
-[submodule "raspicat_switch_control"]
-	path = raspicat_switch_control
-	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_switch_control.git
 [submodule "raspicat_rosbag"]
 	path = raspicat_rosbag
 	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_rosbag.git
@@ -37,6 +31,9 @@
 [submodule "raspicat_sim"]
 	path = raspicat_sim
 	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_sim.git
-[submodule "raspicat_hotspot"]
-	path = raspicat_hotspot
-	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_hotspot.git
+[submodule "RaspberryPiMouse"]
+	path = RaspberryPiMouse
+	url = https://github.com/CIT-Autonomous-Robot-Lab/RaspberryPiMouse.git
+[submodule "RaspberryPiCat_Hardware"]
+	path = RaspberryPiCat_Hardware
+	url = https://github.com/CIT-Autonomous-Robot-Lab/RaspberryPiCat_Hardware.git
