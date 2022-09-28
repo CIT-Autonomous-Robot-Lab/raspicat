@@ -50,8 +50,8 @@ jobs:
       - name: Create id_rsa
         run: |
           mkdir -p ./.github/ssh/
-          echo ${{ secrets.SSH_KNOWN_HOSTS }} >> ./.github/ssh/known_hosts
-          echo ${{ secrets.DOCKER_USERNAME }} >> ./.github/id_rsa
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ./.github/ssh/known_hosts
+          echo "${{ secrets.DOCKER_USERNAME }}" >> ./.github/id_rsa
       
       - name: Build and push docker image
         uses: docker/build-push-action@v2
