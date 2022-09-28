@@ -1,1 +1,2 @@
+[![ros-noetic-ci](https://github.com/CIT-Autonomous-Robot-Lab/raspicat/actions/workflows/raspicat_ci.yaml/badge.svg)](https://github.com/CIT-Autonomous-Robot-Lab/raspicat/actions/workflows/raspicat_ci.yaml)
 # raspicat
