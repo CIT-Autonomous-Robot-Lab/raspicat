@@ -5,13 +5,9 @@ on:
     branches:
       - master
     paths-ignore:
-    - '**.md'
-
-  pull_request:
-    branches:
-      - master
-    paths-ignore:
-    - '**.md'
+      - '**.md'
+  schedule:
+    - cron: '0 22 * * *'
 
 env:
   DOCKER-IMAGE-ENVIRONMENT: ubeike/raspicat-noetic
@@ -47,16 +43,10 @@ jobs:
             ${{ github.ref }}
             refs/head/main
       
-      - name: Create known_hosts id_rsa
+      - name: Create id_rsa
         run: |
           mkdir -p ./.github/ssh/
-          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ./.github/ssh/known_hosts
           echo "${{ secrets.SSH_PRIVATE_KEY}}" > ./.github/ssh/id_rsa
-          export DOCKER_BUILDKIT=1
-      
-      # - name: Debug
-      #   if: ${{ always() }}
-      #   uses: mxschmitt/action-tmate@v3
       
       - name: Build and push docker image
         uses: docker/build-push-action@v2
