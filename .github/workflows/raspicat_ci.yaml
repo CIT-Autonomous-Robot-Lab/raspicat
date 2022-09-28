@@ -20,7 +20,7 @@ env:
   cache-version: v0.0.1
 
 jobs:
-  Build:
+  Build-Push:
     runs-on: ubuntu-20.04
 
     steps:
@@ -51,7 +51,7 @@ jobs:
         run: |
           mkdir -p ./.github/ssh/
           echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ./.github/ssh/known_hosts
-          echo "${{ secrets.DOCKER_USERNAME }}" >> ./.github/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY}}" >> ./.github/id_rsa
       
       - name: Build and push docker image
         uses: docker/build-push-action@v2
