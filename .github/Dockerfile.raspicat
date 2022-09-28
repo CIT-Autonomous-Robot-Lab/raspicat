@@ -1,0 +1,38 @@
+FROM osrf/ros:noetic-desktop-full
+
+SHELL ["/bin/bash", "-c"]
+
+ENV ROS_MASTER_URI=http://localhost:11311 \
+    ROS_HOSTNAME=localhost
+
+RUN apt update && apt upgrade -y && \ 
+    apt install -y \
+    git \
+    ssh \
+    curl \
+    openssh-client \
+    python3-catkin-tools \
+    python3-vcstool
+
+RUN curl \
+    -L https://raw.githubusercontent.com/docker/compose/1.29.2/contrib/completion/bash/docker-compose \
+    -o /etc/bash_completion.d/docker-compose --create-dirs
+
+RUN mkdir -p /root/catkin_ws/src  ~/.ssh \
+    && curl -sL "https://raw.githubusercontent.com/CIT-Autonomous-Robot-Lab/raspicat/master/raspicat_navigation.repos" \
+    -o /tmp/raspicat_navigation.repos
+COPY ./.github/ssh/ /root/.ssh/
+RUN ssh-keyscan github.com > /root/.ssh/known_hosts \
+    && chmod 600 /root/.ssh/id_rsa \
+    && vcs import /root/catkin_ws/src < /tmp/raspicat_navigation.repos --debug --recursive
+
+WORKDIR /root/catkin_ws/
+
+RUN echo "source /opt/ros/noetic/setup.bash" >> /root/.bashrc \
+    && echo "source /root/catkin_ws/devel/setup.bash" >> /root/.bashrc \
+    && source /opt/ros/noetic/setup.bash \
+    && rosdep install -r -y --from-paths --ignore-src ./ \
+    && catkin build
+
+RUN rm -rf /root/.ssh/
+WORKDIR /root/catkin_ws/src/
