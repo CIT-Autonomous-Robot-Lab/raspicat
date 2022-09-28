@@ -52,10 +52,11 @@ jobs:
           mkdir -p ./.github/ssh/
           echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ./.github/ssh/known_hosts
           echo "${{ secrets.SSH_PRIVATE_KEY}}" > ./.github/ssh/id_rsa
+          export DOCKER_BUILDKIT=1
       
-      - name: Debug
-        if: ${{ always() }}
-        uses: mxschmitt/action-tmate@v3
+      # - name: Debug
+      #   if: ${{ always() }}
+      #   uses: mxschmitt/action-tmate@v3
       
       - name: Build and push docker image
         uses: docker/build-push-action@v2
