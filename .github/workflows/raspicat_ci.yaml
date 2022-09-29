@@ -53,6 +53,10 @@ jobs:
           mkdir -p ./.github/ssh/
           echo "${{ secrets.SSH_PRIVATE_KEY}}" > ./.github/ssh/id_rsa
       
+      - name: Apt install
+        run: |
+          sudo apt install qemu-user-static
+
       - name: Build and push docker image
         uses: docker/build-push-action@v2
         with:
