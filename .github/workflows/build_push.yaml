@@ -1,24 +1,23 @@
 name: ros-noetic-ci
 
 on:
-  push:
-    branches:
-      - master
-    paths-ignore:
-      - '**.md'
-  pull_request:
-    branches:
-      - master
-    paths-ignore:
-      - '**.md'
-  schedule:
-    - cron: '0 22 * * *'
+  # push:
+  #   branches:
+  #     - master
+  #   paths-ignore:
+  #     - '**.md'
+  # pull_request:
+  #   branches:
+  #     - master
+  #   paths-ignore:
+  #     - '**.md'
+  # schedule:
+  #   - cron: '0 22 * * *'
 
 env:
-  DOCKER-IMAGE-ENVIRONMENT: ubeike/raspicat-noetic
+  DOCKER-IMAGE-ARM: ubeike/raspicat-noetic:arm64v8
   DOCKER-CONTEXT: ./
-  DOCKER-FILE-ENVIRONMENT: ./.github/Dockerfile.raspicat
-  cache-version: v0.0.1
+  DOCKER-FILE-ARM: ./.github/Dockerfile.raspicat-build
 
 jobs:
   Build-Push:
@@ -51,9 +50,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ${{ env.DOCKER-CONTEXT }}
-          file: ${{ env.DOCKER-FILE-ENVIRONMENT }}
+          file: ${{ env.DOCKER-FILE-ARM }}
           builder: ${{ steps.buildx.outputs.name }}
-          tags: ${{ env.DOCKER-IMAGE-ENVIRONMENT }}
+          tags: ${{ env.DOCKER-IMAGE-ARM }}
           push: true
-          cache-from: type=registry,ref==/tmp/.buildx-cache
-          cache-to: type=registry,ref==/tmp/.buildx-cache,mode=max

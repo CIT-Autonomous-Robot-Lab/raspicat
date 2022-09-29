@@ -1,4 +1,4 @@
-name: create-base-image
+name: schedule-build
 
 on:
   pull_request:
@@ -10,14 +10,16 @@ on:
     - cron: '0 22 * * *'
 
 env:
-  DOCKER-IMAGE-BASE-AMD: ubeike/raspicat-noetic:amd64
-  DOCKER-IMAGE-BASE-ARM: ubeike/raspicat-noetic:arm64v8
+  DOCKER-IMAGE-BASE-AMD: ubeike/raspicat-noetic:amd64-base
+  DOCKER-IMAGE-BASE-ARM: ubeike/raspicat-noetic:arm64v8-base
+  DOCKER-IMAGE-ARM: ubeike/raspicat-noetic:arm64v8  
   DOCKER-CONTEXT: ./
   DOCKER-FILE-BASE-AMD: ./.github/Dockerfile.raspicat-amd64-base
   DOCKER-FILE-BASE-ARM: ./.github/Dockerfile.raspicat-arm64v8-base
+  DOCKER-FILE-ARM: ./.github/Dockerfile.raspicat-build
 
 jobs:
-  Build-Push:
+  Create-Base-Image:
     runs-on: ubuntu-20.04
 
     steps:
@@ -59,4 +61,17 @@ jobs:
           file: ${{ env.DOCKER-FILE-BASE-ARM }}
           builder: ${{ steps.buildx.outputs.name }}
           tags: ${{ env.DOCKER-IMAGE-BASE-ARM }}
+          push: true
+      
+  Build:
+    runs-on: ubuntu-20.04
+    needs: Create-Base-Image
+    steps:
+      - name: Build
+        uses: docker/build-push-action@v2
+        with:
+          context: ${{ env.DOCKER-CONTEXT }}
+          file: ${{ env.DOCKER-FILE-ARM }}
+          builder: ${{ steps.buildx.outputs.name }}
+          tags: ${{ env.DOCKER-IMAGE-ARM }}
           push: true
