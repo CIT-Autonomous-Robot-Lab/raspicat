@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>raspicat_ros</name>
+  <nameraspicat_ros</name>
   <version>0.0.0</version>
   <description>The raspicat_ros meta package</description>
 
