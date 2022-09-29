@@ -32,7 +32,7 @@ WORKDIR /root/catkin_ws/
 RUN echo "source /opt/ros/noetic/setup.bash" >> /root/.bashrc \
 	&& echo "source /root/catkin_ws/devel/setup.bash" >> /root/.bashrc \
 	&& source /opt/ros/noetic/setup.bash \
-	&& rosdep install -r -y --from-paths --ignore-src ./ \
+	&& DEBIAN_FRONTEND=noninteractive rosdep install -r -y --from-paths --ignore-src ./ \
 	&& catkin build
 
 RUN rm -rf /root/.ssh/
