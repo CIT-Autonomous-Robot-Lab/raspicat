@@ -1,24 +1,20 @@
-name: ros-noetic-ci
+name: create-base-image
 
 on:
-  push:
-    branches:
-      - master
-    paths-ignore:
-      - '**.md'
   pull_request:
     branches:
       - master
     paths-ignore:
-    - '**.md'
+      - '**.md'
   schedule:
     - cron: '0 22 * * *'
 
 env:
-  DOCKER-IMAGE-ENVIRONMENT: ubeike/raspicat-noetic
+  DOCKER-IMAGE-BASE-AMD: ubeike/raspicat-noetic:amd64
+  DOCKER-IMAGE-BASE-ARM: ubeike/raspicat-noetic:arm64v8
   DOCKER-CONTEXT: ./
-  DOCKER-FILE-ENVIRONMENT: ./.github/Dockerfile.raspicat
-  cache-version: v0.0.1
+  DOCKER-FILE-BASE-AMD: ./.github/Dockerfile.raspicat-amd64-base
+  DOCKER-FILE-BASE-ARM: ./.github/Dockerfile.raspicat-arm64v8-base
 
 jobs:
   Build-Push:
@@ -38,32 +34,29 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       
-      - name: Cache Docker layers
-        uses: actions/cache@v2
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{env.cache-version}}
-          restore-keys: |
-            ${{ github.ref }}-${{ github.sha }}
-            ${{ github.ref }}
-            refs/head/main
-      
       - name: Create id_rsa
         run: |
           mkdir -p ./.github/ssh/
           echo "${{ secrets.SSH_PRIVATE_KEY}}" > ./.github/ssh/id_rsa
+
+      - name: Build and push docker image amd64
+        uses: docker/build-push-action@v2
+        with:
+          context: ${{ env.DOCKER-CONTEXT }}
+          file: ${{ env.DOCKER-FILE-BASE-AMD }}
+          builder: ${{ steps.buildx.outputs.name }}
+          tags: ${{ env.DOCKER-IMAGE-BASE-AMD }}
+          push: true
       
       - name: Apt install
         run: |
           sudo apt install qemu-user-static
 
-      - name: Build and push docker image
+      - name: Build and push docker image arm64v8
         uses: docker/build-push-action@v2
         with:
           context: ${{ env.DOCKER-CONTEXT }}
-          file: ${{ env.DOCKER-FILE-ENVIRONMENT }}
+          file: ${{ env.DOCKER-FILE-BASE-ARM }}
           builder: ${{ steps.buildx.outputs.name }}
-          tags: ${{ env.DOCKER-IMAGE-ENVIRONMENT }}
+          tags: ${{ env.DOCKER-IMAGE-BASE-ARM }}
           push: true
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache
