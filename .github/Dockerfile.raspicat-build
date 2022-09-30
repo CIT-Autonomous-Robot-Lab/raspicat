@@ -1,4 +1,4 @@
-FROM ubeike/raspicat-noetic:amd64 AS base
+FROM ubeike/raspicat-noetic:amd64-base AS base
 
 SHELL ["/bin/bash", "-c"]
 
