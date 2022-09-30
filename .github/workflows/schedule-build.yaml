@@ -19,54 +19,57 @@ env:
   DOCKER-FILE-ARM: ./.github/Dockerfile.raspicat-build
 
 jobs:
-  Create-Base-Image:
-    runs-on: ubuntu-20.04
+  # Create-Base-Image:
+  #   runs-on: ubuntu-20.04
 
-    steps:
-      - name: Run actions/checkout@v2 
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: Run actions/checkout@v2 
+  #       uses: actions/checkout@v2
       
-      - name: Set up Docker Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v1
+  #     - name: Set up Docker Buildx
+  #       id: buildx
+  #       uses: docker/setup-buildx-action@v1
 
-      - name: Login to DockerHub
-        uses: docker/login-action@v1 
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+  #     - name: Login to DockerHub
+  #       uses: docker/login-action@v1 
+  #       with:
+  #         username: ${{ secrets.DOCKER_USERNAME }}
+  #         password: ${{ secrets.DOCKER_PASSWORD }}
       
-      - name: Create id_rsa
-        run: |
-          mkdir -p ./.github/ssh/
-          echo "${{ secrets.SSH_PRIVATE_KEY}}" > ./.github/ssh/id_rsa
+  #     - name: Create id_rsa
+  #       run: |
+  #         mkdir -p ./.github/ssh/
+  #         echo "${{ secrets.SSH_PRIVATE_KEY}}" > ./.github/ssh/id_rsa
 
-      - name: Build and push docker image amd64
-        uses: docker/build-push-action@v2
-        with:
-          context: ${{ env.DOCKER-CONTEXT }}
-          file: ${{ env.DOCKER-FILE-BASE-AMD }}
-          builder: ${{ steps.buildx.outputs.name }}
-          tags: ${{ env.DOCKER-IMAGE-BASE-AMD }}
-          push: true
+  #     - name: Build and push docker image amd64
+  #       uses: docker/build-push-action@v2
+  #       with:
+  #         context: ${{ env.DOCKER-CONTEXT }}
+  #         file: ${{ env.DOCKER-FILE-BASE-AMD }}
+  #         builder: ${{ steps.buildx.outputs.name }}
+  #         tags: ${{ env.DOCKER-IMAGE-BASE-AMD }}
+  #         push: true
       
-      - name: Apt install
-        run: |
-          sudo apt install qemu-user-static
+  #     - name: Apt install
+  #       run: |
+  #         sudo apt install qemu-user-static
 
-      - name: Build and push docker image arm64v8
-        uses: docker/build-push-action@v2
-        with:
-          context: ${{ env.DOCKER-CONTEXT }}
-          file: ${{ env.DOCKER-FILE-BASE-ARM }}
-          builder: ${{ steps.buildx.outputs.name }}
-          tags: ${{ env.DOCKER-IMAGE-BASE-ARM }}
-          push: true
+  #     - name: Build and push docker image arm64v8
+  #       uses: docker/build-push-action@v2
+  #       with:
+  #         context: ${{ env.DOCKER-CONTEXT }}
+  #         file: ${{ env.DOCKER-FILE-BASE-ARM }}
+  #         builder: ${{ steps.buildx.outputs.name }}
+  #         tags: ${{ env.DOCKER-IMAGE-BASE-ARM }}
+  #         push: true
       
   Build:
     runs-on: ubuntu-20.04
-    needs: Create-Base-Image
+    # needs: Create-Base-Image
     steps:
+      - name: Run actions/checkout@v2 
+        uses: actions/checkout@v2
+
       - name: Build
         uses: docker/build-push-action@v2
         with:
