@@ -1,23 +1,21 @@
 name: ros-noetic-ci
 
 on:
-  # push:
-  #   branches:
-  #     - master
-  #   paths-ignore:
-  #     - '**.md'
-  # pull_request:
-  #   branches:
-  #     - master
-  #   paths-ignore:
-  #     - '**.md'
-  # schedule:
-  #   - cron: '0 22 * * *'
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
 
 env:
   DOCKER-IMAGE-ARM: ubeike/raspicat-noetic:arm64v8
   DOCKER-CONTEXT: ./
-  DOCKER-FILE-ARM: ./.github/Dockerfile.raspicat-build
+  DOCKER-FILE-ARM: ./.github/Dockerfile.raspicat-build-push
 
 jobs:
   Build-Push:
@@ -39,12 +37,23 @@ jobs:
       
       - name: Create id_rsa
         run: |
-          mkdir -p ./.github/ssh/
-          echo "${{ secrets.SSH_PRIVATE_KEY}}" > ./.github/ssh/id_rsa
+          mkdir -p /home/runner/.ssh/
+          echo -e "${{ secrets.SSH_PRIVATE_KEY}}" > /home/runner/.ssh/id_rsa
+          chmod 600 /home/runner/.ssh/id_rsa
       
-      - name: Apt install
+      - name: Apt Snap install
         run: |
-          sudo apt install qemu-user-static
+          sudo apt install qemu-user-static python3-vcstool
+          sudo snap install yq
+
+      - name: Sed clone branch
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          yq -i '.repositories.raspicat.version = "${{ github.head_ref }}"' raspicat_navigation.repos
+
+      - name: Vcs import
+        run: |
+          vcs import .github/ < raspicat_navigation.repos --debug --recursive
 
       - name: Build and push docker image
         uses: docker/build-push-action@v2
