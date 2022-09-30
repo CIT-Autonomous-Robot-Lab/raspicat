@@ -53,6 +53,7 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
         run: |
           yq -i '.repositories.raspicat.version = "${{ github.head_ref }}"' raspicat_navigation.repos
+          cat raspicat_navigation.repos
 
       - name: Vcs import
         run: |
