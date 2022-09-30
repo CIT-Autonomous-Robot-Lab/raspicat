@@ -1,11 +1,9 @@
 FROM ubeike/raspicat-noetic:amd64-base AS base
 
 SHELL ["/bin/bash", "-c"]
-
 WORKDIR /root/catkin_ws/
-
 RUN source /opt/ros/noetic/setup.bash \ 
-	&& catkin build
+  && catkin build
 
 FROM ubeike/raspicat-noetic:arm64v8 AS builder
 
