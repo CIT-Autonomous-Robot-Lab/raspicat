@@ -57,7 +57,9 @@ jobs:
       - name: Vcs import
         run: |
           mkdir -p .github/repository
+          ls
           vcs import .github/repository < raspicat_navigation.repos --debug --recursive
+          exit 1
 
       - name: Build and push docker image
         uses: docker/build-push-action@v2
