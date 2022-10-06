@@ -62,9 +62,13 @@ jobs:
           echo test
           vcs import repository < raspicat_navigation.repos --debug --recursive
           cd repository
+          echo test1
           ls
+          echo test1
           cd raspicat
+          echo test2
           ls
+          echo test2
           exit 1
 
       - name: Build and push docker image
