@@ -56,12 +56,15 @@ jobs:
 
       - name: Vcs import
         run: |
-          mkdir -p .github/repository
-          cd .github/repository
+          mkdir -p repository
           echo test
           ls
           echo test
-          vcs import .github/repository < raspicat_navigation.repos --debug --recursive
+          vcs import repository < raspicat_navigation.repos --debug --recursive
+          cd repository
+          ls
+          cd raspicat
+          ls
           exit 1
 
       - name: Build and push docker image
