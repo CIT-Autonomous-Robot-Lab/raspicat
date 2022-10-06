@@ -2,7 +2,7 @@ FROM ubeike/raspicat-noetic:amd64-base AS base
 
 SHELL ["/bin/bash", "-c"]
 WORKDIR /root/catkin_ws/
-COPY /tmp/repository/ /root/catkin_ws/src/
+COPY /tmp/repository /root/catkin_ws/src
 RUN apt update && apt upgrade -y 
 RUN source /opt/ros/noetic/setup.bash \ 
 	&& DEBIAN_FRONTEND=noninteractive rosdep install -r -y --from-paths --ignore-src ./ \
