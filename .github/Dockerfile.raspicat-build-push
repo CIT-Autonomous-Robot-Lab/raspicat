@@ -2,11 +2,12 @@ FROM ubeike/raspicat-noetic:amd64-base AS base
 
 SHELL ["/bin/bash", "-c"]
 WORKDIR /root/catkin_ws/
-COPY .github/raspicat /root/catkin_ws/src/
+RUN rm -rf /root/catkin_ws/src/*
+COPY .github/ /root/catkin_ws/src/
 RUN apt update && apt upgrade -y 
 RUN source /opt/ros/noetic/setup.bash \ 
-  && DEBIAN_FRONTEND=noninteractive rosdep install -r -y --from-paths --ignore-src ./ \
-  && catkin build
+	&& DEBIAN_FRONTEND=noninteractive rosdep install -r -y --from-paths --ignore-src ./ \
+	&& catkin build
 
 FROM ubeike/raspicat-noetic:arm64v8 AS builder
 
@@ -15,5 +16,5 @@ COPY --from=base /root/catkin_ws/ /root/catkin_ws/
 RUN apt update && apt upgrade -y 
 WORKDIR /root/catkin_ws/
 RUN source /opt/ros/noetic/setup.bash \ 
-  && DEBIAN_FRONTEND=noninteractive rosdep install -r -y --from-paths --ignore-src ./
+	&& DEBIAN_FRONTEND=noninteractive rosdep install -r -y --from-paths --ignore-src ./
 WORKDIR /root/catkin_ws/src/
