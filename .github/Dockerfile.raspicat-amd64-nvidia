@@ -1,0 +1,16 @@
+FROM ubeike/raspicat-noetic:amd64-base
+
+SHELL ["/bin/bash", "-c"]
+
+ENV NVIDIA_VISIBLE_DEVICES ${NVIDIA_VISIBLE_DEVICES:-all}
+ENV NVIDIA_DRIVER_CAPABILITIES ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
+
+ENV ROS_MASTER_URI=http://localhost:11311 \
+  ROS_HOSTNAME=localhost
+
+WORKDIR /root/catkin_ws/
+
+RUN source /opt/ros/noetic/setup.bash \
+  && catkin build
+
+WORKDIR /root/catkin_ws/src/
