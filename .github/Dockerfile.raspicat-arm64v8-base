@@ -10,6 +10,8 @@ RUN apt update && apt upgrade -y && \
   alsa-utils \
   curl \
   git \
+  open-jtalk \
+  open-jtalk-mecab-naist-jdic \
   openssh-client \
   python3-catkin-tools \
   python3-pip \
