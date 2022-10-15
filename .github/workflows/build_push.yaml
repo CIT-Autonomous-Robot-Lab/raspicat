@@ -9,8 +9,10 @@ on:
 
 env:
   DOCKER-IMAGE-ARM: ubeike/raspicat-noetic:arm64v8
+  DOCKER-IMAGE-AMD-NVIDIA: ubeike/raspicat-noetic:amd64-nvidia
   DOCKER-CONTEXT: ./
   DOCKER-FILE-ARM: ./.github/Dockerfile.raspicat-build-push
+  DOCKER-FILE-AMD-NVIDIA: ./.github/Dockerfile.raspicat-amd64-nvidia
 
 jobs:
   Build-Push:
@@ -54,11 +56,20 @@ jobs:
           mkdir -p repository
           vcs import repository < raspicat_navigation.repos --debug --recursive
 
-      - name: Build and push docker image
+      - name: Build and push docker image arm64v8
         uses: docker/build-push-action@v2
         with:
           context: ${{ env.DOCKER-CONTEXT }}
           file: ${{ env.DOCKER-FILE-ARM }}
           builder: ${{ steps.buildx.outputs.name }}
           tags: ${{ env.DOCKER-IMAGE-ARM }}
+          push: true
+      
+      - name: Build and push docker image amd64 nvidia
+        uses: docker/build-push-action@v2
+        with:
+          context: ${{ env.DOCKER-CONTEXT }}
+          file: ${{ env.DOCKER-FILE-AMD-NVIDIA }}
+          builder: ${{ steps.buildx.outputs.name }}
+          tags: ${{ env.DOCKER-IMAGE-AMD-NVIDIA }}
           push: true
