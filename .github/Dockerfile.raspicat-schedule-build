@@ -1,4 +1,4 @@
-FROM ubeike/raspicat-noetic:amd64-base AS base
+FROM ubeike/raspicat-noetic:arm64-base
 
 SHELL ["/bin/bash", "-c"]
 WORKDIR /root/catkin_ws/
