@@ -12,7 +12,7 @@ env:
   DOCKER-FILE-ARM: ./.github/Dockerfile.raspicat-build
 
 jobs:
-  Build-Push:
+  Build:
     runs-on: ubuntu-20.04
 
     steps:
