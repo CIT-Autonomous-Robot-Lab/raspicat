@@ -18,7 +18,7 @@ env:
 jobs:
   Create-Base-Image:
     runs-on: ubuntu-20.04
-    timeout-minutes: 40
+    timeout-minutes: 50
 
     steps:
       - name: Run actions/checkout@v2 
