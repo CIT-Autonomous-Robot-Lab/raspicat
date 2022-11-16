@@ -19,3 +19,7 @@ repositories:
     type: git
     url: git@github.com:yujinrobot/yocs_msgs.git
     version: devel
+  ar_track_alvar:
+    type: git
+    url: git@github.com:ros-perception/ar_track_alvar.git
+    version: noetic-devel
