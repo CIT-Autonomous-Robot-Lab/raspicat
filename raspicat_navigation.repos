@@ -5,7 +5,7 @@ repositories:
     version: master
   emcl2:
     type: git
-    url: git@github.com:ryuichiueda/emcl2.git
+    url: git@github.com:CIT-Autonomous-Robot-Lab/emcl2.git
     version: master
   map2gazebo:
     type: git
@@ -13,13 +13,9 @@ repositories:
     version: master
   yujin_ocs:
     type: git
-    url: git@github.com:yujinrobot/yujin_ocs.git
+    url: git@github.com:CIT-Autonomous-Robot-Lab/yujin_ocs.git
     version: devel
   yocs_msgs:
     type: git
     url: git@github.com:yujinrobot/yocs_msgs.git
     version: devel
-  ar_track_alvar:
-    type: git
-    url: git@github.com:ros-perception/ar_track_alvar.git
-    version: noetic-devel
