@@ -11,7 +11,7 @@ repositories:
     type: git
     url: git@github.com:uhobeike/map2gazebo.git
     version: master
-	yujin_ocs:
-		type: git
-		url: git@github.com:yujinrobot/yujin_ocs.git
-		version: devel
+  yujin_ocs:
+    type: git
+    url: git@github.com:yujinrobot/yujin_ocs.git
+    version: devel
