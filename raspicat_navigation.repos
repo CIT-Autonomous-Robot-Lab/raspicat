@@ -15,3 +15,7 @@ repositories:
     type: git
     url: git@github.com:yujinrobot/yujin_ocs.git
     version: devel
+  yocs_msgs:
+    type: git
+    url: git@github.com:yujinrobot/yocs_msgs.git
+    version: devel
