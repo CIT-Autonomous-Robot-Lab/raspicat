@@ -1,39 +1,39 @@
 [submodule "raspicat_slam"]
 	path = raspicat_slam
-	url = git@github.com:CIT-Autonomous-Robot-Lab/raspicat_slam.git
+	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_slam.git
 [submodule "raspicat_navigation"]
 	path = raspicat_navigation
-	url = git@github.com:CIT-Autonomous-Robot-Lab/raspicat_navigation.git
+	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_navigation.git
 [submodule "raspicat_description"]
 	path = raspicat_description
-	url = git@github.com:CIT-Autonomous-Robot-Lab/raspicat_description.git
+	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_description.git
 [submodule "raspicat_documentation"]
 	path = raspicat_documentation
-	url = git@github.com:CIT-Autonomous-Robot-Lab/raspicat_documentation.git
+	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_documentation.git
 [submodule "raspicat_speak"]
        path = raspicat_speak
-       url = git@github.com:CIT-Autonomous-Robot-Lab/raspicat_speak.git
+       url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_speak.git
 [submodule "raspicat_perception"]
 	path = raspicat_perception
-	url = git@github.com:CIT-Autonomous-Robot-Lab/raspicat_perception.git
+	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_perception.git
 [submodule "raspicat_rosbag"]
 	path = raspicat_rosbag
-	url = git@github.com:CIT-Autonomous-Robot-Lab/raspicat_rosbag.git
+	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_rosbag.git
 [submodule "raspicat_setup_scripts"]
 	path = raspicat_setup_scripts
-	url = git@github.com:CIT-Autonomous-Robot-Lab/raspicat_setup_scripts.git
+	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_setup_scripts.git
 [submodule "raspimouse"]
 	path = raspimouse
-	url = git@github.com:CIT-Autonomous-Robot-Lab/raspimouse.git
+	url = https://github.com/CIT-Autonomous-Robot-Lab/raspimouse.git
 [submodule "raspicat_ros"]
 	path = raspicat_ros
-	url = git@github.com:CIT-Autonomous-Robot-Lab/raspicat_ros.git
+	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_ros.git
 [submodule "raspicat_sim"]
 	path = raspicat_sim
-	url = git@github.com:CIT-Autonomous-Robot-Lab/raspicat_sim.git
+	url = https://github.com/CIT-Autonomous-Robot-Lab/raspicat_sim.git
 [submodule "RaspberryPiMouse"]
 	path = RaspberryPiMouse
-	url = git@github.com:CIT-Autonomous-Robot-Lab/RaspberryPiMouse.git
+	url = https://github.com/CIT-Autonomous-Robot-Lab/RaspberryPiMouse.git
 [submodule "RaspberryPiCat_Hardware"]
 	path = RaspberryPiCat_Hardware
-	url = git@github.com:CIT-Autonomous-Robot-Lab/RaspberryPiCat_Hardware.git
+	url = https://github.com/CIT-Autonomous-Robot-Lab/RaspberryPiCat_Hardware.git
